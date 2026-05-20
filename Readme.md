@@ -152,7 +152,7 @@ http://127.0.0.1:8000/docs
 - [x] Variables de entorno
 - [x] Separación de la capa CRUD
 - [x] Estructura limpia de route
-- [ ] Docker
+- [x] Docker
 
 ## Aprendizajes
 
