@@ -36,8 +36,6 @@ Además, el proyecto sirve como base para explorar conceptos relacionados con se
 task-api/
 │
 ├── app/
-│   ├── config.py
-│   ├── main.py
 │   │
 │   ├── auth/
 │   │   ├── dependencies.py
@@ -64,13 +62,16 @@ task-api/
 │   │   ├── tasks.py
 │   │   └── users.py
 │   │
-│   └── schemas/
-│       ├── __init__.py
-│       └── task.py
-│       └── user.py
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   └── task.py
+│   │   └── user.py
+│   │
+│   ├── config.py
+│   └── main.py
 │
-├── .env
 ├── .dockerignore
+├── .env.example
 ├── .gitignore
 ├── Dockerfile
 ├── Readme.md
@@ -82,7 +83,7 @@ task-api/
 Clonar el repositorio:
 
 ```bash
-git clone https://github.com/AlexanderFloresBarturen/pentesting-book/tree/main/Proyectos/task-api
+git clone https://github.com/AlexanderFloresBarturen/task-api.git
 
 cd task-api
 ```
@@ -109,6 +110,14 @@ Instalar dependencias:
 pip install -r requirements.txt
 ```
 
+## Crear un archivo `.env`:
+
+```env
+SECRET_KEY=your_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
 ## Ejecución
 
 Iniciar el servidor:
@@ -129,9 +138,19 @@ Documentación automática:
 http://127.0.0.1:8000/docs
 ```
 
-## Estado del proyecto
+## Docker
 
-🚧 En desarrollo
+Construir imagen:
+
+```bash
+docker build -t task-api .
+```
+
+Ejecutar contenedor:
+
+```bash
+docker run --env-file .env -p <IP>:8000:8000 task-api
+```
 
 ### Progreso actual
 
@@ -160,3 +179,4 @@ http://127.0.0.1:8000/docs
 - Se encontró un problema de compatibilidad entre `passlib` y `bcrypt 5.x`.
 - Se fijó `bcrypt==4.0.4` para mantener la compatibilidad durante el desarrollo.
 - Verificaciones de seguridad para prevenir que usuarios consulten tareas que no son de su propiedad (IDOR).
+- La `IP` en el comando para ejecutar el contenedor se utiliza cuando se tienen varias interfaces de red y se quiere especificar una en especial.
